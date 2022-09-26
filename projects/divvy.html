@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Kobe Mores - Chicago Divvy Bikes</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="..\assets\css\main.css" />
+    <noscript
+      ><link rel="stylesheet" href="..\assets/css/noscript.css"
+    /></noscript>
+  </head>
+  <body class="is-preload">
+    <!-- Header -->
+    <header id="header">
+      <a href="../index.html" class="back-link">Go Back</a>
+      
+    </header>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+      <!-- Main -->
+      <section id="main" class="wrapper">
+        <div class="inner">
+					<ul class="actions">
+						<li><a href="https://github.com/ktmores/PortfolioProjects/tree/main/Divvy%20Bikes%20Data%20Analysis" class="button" target="_blank">View in Github</a></li>
+						<li><a href="https://public.tableau.com/app/profile/kobe.mores/viz/ChicagoDivvyBikes/DivvyDashboard" class="button" target="_blank">View Dashboard</a></li>
+					</ul>
+          <h1 class="major">Chicago Divvy Bike-Share</h1>
+          <p>
+            In this project I analyzed Divvy's historical bicycle trip data in
+            order to identify trends and understand how casual riders behave
+            differently from riders with paid memberships. This analysis will
+            help executives to make decisions about marketing programs and
+            strategies to convert casual riders to riders with annual
+            memberships. Data is cleaned, transformed, and analyzed using Microsoft SQL Server while visualizations are made using Tableau.
+          </p>
+          <h2>Background</h2>
+          <p>
+            Divvy is a bike-share company in Chicago that features more than
+            5,800 bicycles and 600 docking stations. The company offers
+            different types of bikes that caters to the customers needs. The
+            company also offers pricing plans: single-ride passes, full-day
+            passes, and annual memberships.
+            <li>
+              Customers who purchase single-ride or full-day passes are referred
+              to as <b>casual</b> riders.
+            </li>
+            <li>
+              Customers who purchase annual memberships are divvy <b>members</b>.
+            </li>
+          </p>
+          <h2>About the Data</h2> 
+            <p>
+              I used 12 Months of Historical Trip Data starting from June 2021
+              to May 2022. This data is available to the public and is
+              released on a monthly schedule. More information can be found <a href="https://ride.divvybikes.com/system-data" target="_blank">here</a>
+              . The data has been made available by Motivate International
+              Inc. under this <a href="https://ride.divvybikes.com/data-license-agreement" target="_blank">license.</a> The data is anonymized and includes:
+              <li>Trip start day and time</li>
+              <li>Trip end day and time</li>
+              <li>Trip start station</li>
+              <li>Trip end station</li>
+              <li>Rider type (member or casual)</li>
+              <li>Bike type</li>
+            </p>
+          </h2>
+          <h2>Cleaning and Transforming</h2>
+          <p>
+            I have made two new columns which are the ride duration column, calculated from the starting and ending dates, and a day-of-the-week column to help me in facilitating my analysis.<br>
+            Upon checking the data, there are some rows with duration of negative values. I have decided to just delete all data with a duration less than 1 min since those may not have been actual trips while the sample size will stay large. I have also deleted some rows with empty strings.
+          </p>
+					<h2>Analysis</h2>
+					<p>
+						I have decided to go for metrics that would help me distinguish how each rider types behave differently: <br>
+            First, let's see the rider type distribution and average trip duration of each rider type. 
+					</p>
+        
+          
+          <div class="row">
+            <div class="col-6 align-center" >
+                <h3>Average Duration in Minutes</h3>
+                <img
+              src="..\images\average_duration.png"
+              alt="Average duration in minutes bar graph"
+              data-position="center center"
+              class = 'responsive'
+          />
+  
+            </div>
+            <div class="col-6 align-center" >
+                <h3>Rider Distribution</h3>
+                <img
+              src="..\images\rider_distrib.png"
+              alt="rider distribution bar graph"
+              data-position="center center"
+              class = 'responsive'
+          />          
+            </div>
+          </div>
+        <p> Casual riders average trip duration is double than those members. <br><br>
+        Let's also see how they both riders differ per month, day of the week, and hour of the day.</p>    
+          <div class="row">
+            <div class="col-6 align-center" >
+                <h3>Trips per day of the week</h3>
+                <img
+              src="..\images\perdayweek.png"
+              alt="Trips per day of the week bar graph"
+              data-position="center center"
+              class = 'responsive'
+          />
+
+            </div>
+            <div class="col-6 align-center" >
+                <h3>Trips per month</h3>
+                <img
+              src="..\images\permonth.png"
+              alt="Trips per month bar graph"
+              data-position="center center"
+              class = 'responsive'
+          />          
+            </div>
+          </div>
+          <p>Members tend to use the service slightly more during the weekdays, while as for casuals, there is a significant increase in trips during the weekends. 
+            Both riders also uses the service more during the warmer months from May to October.<br><br> I also want to see whether the day of the week contributes to the average ride duration as well.</p>
+          <div class ="align-center">
+            <h3>Average duration per day of the week</h3>
+            <img
+            src="..\images\avgdurationperday.png"
+            alt="Average duration per day of the week bar graph"
+            data-position="center center"
+            class = 'responsive'
+          />    
+          </div>
+          <p>Casuals not only uses the service more during the weekends, their average ride duration also increases.</p>
+          <div class ="align-center">
+            <h3>Trip count per hour</h3>
+            <img
+            src="..\images\perhour.png"
+            alt="Trip count per hour line graph"
+            data-position="center center"
+            class = 'responsive'
+          />    
+          </div> 
+          <p>Both trip counts increases starting at 5AM and decreases after 5PM. There's also a significant increase of member riders between 7AM to 8AM which is not the case for casual riders.</p>
+          <div class="row">
+
+            <div class="col-3 align-center" >
+                <h3>Starting stations heat map- Casual</h3>
+                <img
+              src="..\images\casualstation.png"
+              alt="Starting stations heat map- Casual"
+              data-position="center center"
+              class = 'responsive'
+          />
+
+            </div>
+            <div class="col-3 align-center" >
+                <h3>Starting stations heat map- Member</h3>
+                <img
+              src="..\images\memberstation.png"
+              alt="Starting stations heat map- Member"
+              data-position="center center"
+              class = 'responsive'
+          />          
+            </div>
+            <div class="col-6 align-center" >
+              <h3>Top 10 starting stations- Member</h3>
+              <img
+            src="..\images\memberstationbar.png"
+            alt="Top 10 starting stations- Member bar graph"
+            data-position="center center"
+            class = 'responsive'
+        />          
+              <h3>Top 10 starting stations- Casual</h3>
+                    <img
+                  src="..\images\casualstationbar.png"
+                  alt="Top 10 starting stations- Member bar graph"
+                  data-position="center center"
+                  class = 'responsive'
+              />          
+            </div>
+          </div>
+          <p>A large volume of casual trips is located at the Street Dr & Grand Avenue station. According to the data there were total of <b>1,997,390</b> casual trips among <b>988</b> stations. 3% of those trips were started at Street Dr & Grand Avenue with 64,525 casual trips. </p>
+          <p>Lastly, I want to check if there were some significant dates on the top 10 dates for each rider type with the highest trip count.</p>
+        <div class="row align-center">
+          <div class="col-6 align-center" >
+              <h3>Top 10 dates with highest number of trips - Casual</h3>
+              <img
+            src="..\images\topdatescasual.PNG"
+            alt="Top 10 trip dates - casual table"
+            data-position="center center"
+            class = 'responsive'
+        />
+
+          </div>
+          <div class="col-6 align-center" >
+              <h3>Top 10 dates with highest number of trips - Member</h3>
+              <img
+            src="..\images\topdatesmember.PNG"
+            alt="Top 10 trip dates - casual table"
+            data-position="center center"
+            class = 'responsive'
+        />          
+          </div>
+        </div>
+        <p>4 out 10 of the top trip dates for casuals includes weekends where holidays are set: Sep 5th (Labor Day), June 19 (Juneteenth), July 3rd-4th (Independence day). Top trip dates for members are not set around holiday dates compared to casuals.</p>
+         
+        <h2>Key Findings</h2>
+        <p> Based on my analysis, the data show:<br>
+        <ol>
+          <li>Members uses the service more during weekdays with a consistent average trip duration through the whole week. Trip counts for casuals increases to almost double during the weekends along with an increase of average trip duration.</li>
+          <li>For members, two peak times occurs from 7AM to 8AM and from 5PM to 6PM. Casuals have only one peak time that occurs during 5PM to 6PM. A possible reason is that casual users uses the service more for leisure activities during the afternoon compared to members that uses the service as a means of transportation or commute for work or school.</li>
+          <li>Riders are influenced by temperature. There are more trips during summer months and a decrease of trips during winter.</li>
+          <li>Casuals are likely to use the service during holidays.</li>
+          <li>Big portion of casual riders uses the Street Dr. and Grand Avenue Station which amounts to 3% of all trips by casuals.</li>
+          <li>Most casual riders uses stations that are near the Lake, while members starting station are concentrated in the downtown area.</li>
+        </ol>
+        </p>
+        <h2>Recommendations</h2>
+        <p> Some recommendations to encourage casual to become members:<br>
+          <ol>
+            <li>Offer some kind of promotion for weekend-only or seasonal month type membership.</li>
+            <li>Post ads during the hours, months (Summer months), and days (holidays) where casual rides are increasing. </li>
+            <li>Offer some kind of points-based incentives where members are given rewards the longer their total trip duration is. This is would encourage casuals since their average ride duration is double than members.</li>
+            <li>Show campaign ads on areas where top stations used by casuals are located. Partner with businesses that are located near those areas for campaigning. Coordinate with any events during the months and days with high number of trips and those events that are located near the most used casual stations.</li>
+            <li>Offer discounts or free trips for the first few months for current casuals that are converting to a member pricing plan.</li>
+          </ol>
+          </p>
+        <div id="vizContainer"></div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="wrapper alt">
+      <div class="inner">
+        <ul class="menu">
+          <li>&copy; HTML5 UP. All rights reserved.</li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>
